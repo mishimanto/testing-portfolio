@@ -59,9 +59,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&amp;display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap");
 :root {
-  --color-primary: #FF014F;
-  --color-primary-alt: #ff014dd9;
-  --color-primary-2nd: #FF494A;
+  --color-primary: #328E6E;
+  --color-primary-alt: #67AE6E;
+  --color-primary-2nd: #90C67C;
   --color-primary-3rd: #FDC448;
   --color-primary-4th: #0071ff;
   --color-secondary: #060606;
@@ -75,7 +75,7 @@
   --background-color-4: #242435;
   --background-color-5: #EDF5FF;
   --color-card: #1b1b1c;
-  --gradient-box: linear-gradient(to right, #5237f9, #FF014F);
+  --gradient-box: linear-gradient(to right, #67AE6E, #328E6E);
   --gradient-one: linear-gradient(to right bottom, #E42032, #1273EB);
   --gradient-two: linear-gradient(to right, #ED145B, #4A11EB);
   --gradient-three: linear-gradient(to right, #03041c, #0612b3);
@@ -12432,7 +12432,7 @@ header.header-full-width.header--sticky.sticky {
 .rpp-banner-two-area::after, .rpp-banner-two-area::before {
   content: " ";
   opacity: 0.3;
-  background: #FF014F;
+  background: #328E6E;
   position: absolute;
   width: 611px;
   height: 611px;
@@ -13104,7 +13104,7 @@ header.header-full-width.header--sticky.sticky {
   height: 300px;
   bottom: 0;
   z-index: -1;
-  background: linear-gradient(180deg, #FF494A 0%, rgba(255, 73, 74, 0) 100%);
+  background: linear-gradient(180deg, #90C67C 0%, rgba(144, 198, 124, 0) 100%);
   border-radius: 291.5px 291.5px 0px 0px;
 }
 @media (min-width: 400px) {
@@ -13586,7 +13586,7 @@ header.header-full-width.header--sticky.sticky {
   position: absolute;
   bottom: 0;
   left: 20%;
-  -webkit-text-stroke: 1.25px #FF494A;
+  -webkit-text-stroke: 1.25px #90C67C;
   font-family: var(--font-primary);
   font-size: 150px;
   font-weight: 700;
@@ -17646,7 +17646,7 @@ section.clients-testimonial-area {
 .rpp-banner-two-area::after, .rpp-banner-two-area::before {
   content: " ";
   opacity: 0.3;
-  background: #FF014F;
+  background: #328E6E;
   position: absolute;
   width: 611px;
   height: 611px;
@@ -18318,7 +18318,7 @@ section.clients-testimonial-area {
   height: 300px;
   bottom: 0;
   z-index: -1;
-  background: linear-gradient(180deg, #FF494A 0%, rgba(255, 73, 74, 0) 100%);
+  background: linear-gradient(180deg, #90C67C 0%, rgba(144, 198, 124, 0) 100%);
   border-radius: 291.5px 291.5px 0px 0px;
 }
 @media (min-width: 400px) {
@@ -18800,7 +18800,7 @@ section.clients-testimonial-area {
   position: absolute;
   bottom: 0;
   left: 20%;
-  -webkit-text-stroke: 1.25px #FF494A;
+  -webkit-text-stroke: 1.25px #90C67C;
   font-family: var(--font-primary);
   font-size: 150px;
   font-weight: 700;
@@ -20574,7 +20574,7 @@ section.clients-testimonial-area {
 .contact-info .contact-icon {
   width: 70px;
   height: 70px;
-  background: rgba(255, 73, 74, 0.2);
+  background: rgba(144, 198, 124, 0.2);
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -22016,7 +22016,7 @@ body.loaded {
   position: absolute;
   left: 0;
   top: 197px;
-  background: linear-gradient(0deg, rgba(255, 1, 79, 0) 15.49%, var(--color-primary) 100%);
+  background: linear-gradient(0deg, rgba(50, 142, 110, 0) 15.49%, var(--color-primary) 100%);
   filter: blur(2px);
   border-radius: 100%;
   width: 410px;
@@ -22040,7 +22040,7 @@ body.loaded {
   position: absolute;
   left: 0;
   top: 197px;
-  background: linear-gradient(0deg, rgba(255, 1, 79, 0) 15.49%, #FDC448 100%);
+  background: linear-gradient(0deg, rgba(50, 142, 110, 0) 15.49%, #90C67C 100%);
   filter: blur(2px);
   border-radius: 100%;
   width: 410px;
@@ -22343,7 +22343,7 @@ body.loaded {
 /* Service Card v1*/
 .service-card-v1 {
   border-radius: 20px;
-  border: 1px solid rgba(255, 73, 74, 0.16);
+  border: 1px solid rgba(144, 198, 124, 0.16);
   padding: 40px 0 40px 0;
   transition: 0.4s;
 }
@@ -22358,7 +22358,7 @@ body.loaded {
   }
 }
 .service-card-v1.vc-primary-2nd {
-  border: 1px solid rgba(255, 73, 74, 0.16);
+  border: 1px solid rgba(144, 198, 124, 0.16);
 }
 .service-card-v1.vc-primary-2nd .service-card-icon {
   color: var(--color-primary);
@@ -22562,7 +22562,7 @@ body.loaded {
 }
 .services-widget.v2 .active-bg {
   border-radius: 20px;
-  background: rgba(255, 1, 79, 0.1019607843);
+  background: rgba(50, 142, 110, 0.1019607843);
   backdrop-filter: blur(35px);
 }
 .services-widget.v3 .service-item .my-skill-card .card-para {
