@@ -18,7 +18,7 @@ class SocialLinkResource extends Resource
 {
     protected static ?string $model = SocialLink::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShare;
 
     public static function form(Schema $schema): Schema
     {

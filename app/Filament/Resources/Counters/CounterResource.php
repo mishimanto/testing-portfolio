@@ -18,7 +18,7 @@ class CounterResource extends Resource
 {
     protected static ?string $model = Counter::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartBarSquare;
 
     public static function form(Schema $schema): Schema
     {

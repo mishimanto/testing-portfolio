@@ -18,7 +18,7 @@ class SectionSettingResource extends Resource
 {
     protected static ?string $model = SectionSetting::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAdjustmentsHorizontal;
 
     public static function form(Schema $schema): Schema
     {
