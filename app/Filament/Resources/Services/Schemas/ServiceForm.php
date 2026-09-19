@@ -19,7 +19,8 @@ class ServiceForm
                     ->columnSpanFull(),
                 TextInput::make('icon'),
                 TextInput::make('url')
-                    ->url(),
+                    ->placeholder('#contact')
+                    ->helperText('Use a section anchor such as #contact, a relative path, or a full URL.'),
                 TextInput::make('sort_order')
                     ->required()
                     ->numeric()

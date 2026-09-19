@@ -22,6 +22,9 @@ class CountersTable
                     ->sortable(),
                 TextColumn::make('suffix')
                     ->searchable(),
+                TextColumn::make('description')
+                    ->limit(45)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),

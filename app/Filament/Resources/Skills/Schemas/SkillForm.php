@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Skills\Schemas;
 
+use App\Models\SkillGroup;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -12,7 +14,11 @@ class SkillForm
     {
         return $schema
             ->components([
-                TextInput::make('category')
+                Select::make('category')
+                    ->label('Skill section')
+                    ->options(fn (): array => SkillGroup::query()->orderBy('sort_order')->pluck('title', 'key')->all())
+                    ->searchable()
+                    ->preload()
                     ->required()
                     ->default('development'),
                 TextInput::make('name')

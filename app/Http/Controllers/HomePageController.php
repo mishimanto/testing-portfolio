@@ -13,6 +13,7 @@ use App\Models\SectionSetting;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\Skill;
+use App\Models\SkillGroup;
 use App\Models\SocialLink;
 use App\Models\Testimonial;
 use Illuminate\View\View;
@@ -31,6 +32,11 @@ class HomePageController extends Controller
             'services' => Service::query()->where('is_active', true)->orderBy('sort_order')->get(),
             'counters' => Counter::query()->where('is_active', true)->orderBy('sort_order')->get(),
             'skills' => Skill::query()->where('is_active', true)->orderBy('sort_order')->get()->groupBy('category'),
+            'skillGroups' => SkillGroup::query()
+                ->where('is_active', true)
+                ->with(['skills' => fn ($query) => $query->where('is_active', true)->orderBy('sort_order')])
+                ->orderBy('sort_order')
+                ->get(),
             'careerEntries' => CareerEntry::query()->where('is_active', true)->orderBy('sort_order')->get()->groupBy('type'),
             'partners' => Partner::query()->where('is_active', true)->orderBy('sort_order')->get(),
             'projects' => Project::query()->where('is_active', true)->orderBy('sort_order')->get(),

@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(NavigationItemSeeder::class);
+        $this->call(SkillGroupSeeder::class);
 
         HeroSection::query()->updateOrCreate(['id' => 1], [
             'eyebrow' => 'Hello', 'heading_prefix' => "I'm", 'name' => 'Jane Cooper', 'heading_connector' => 'a',
@@ -64,7 +65,11 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ([['Years Of Experience', 25, ''], ['Projects Complete', 20, 'k+'], ['Digital Products', 10, 'k+'], ['Client Reviews', 200, '+'], ['Satisfied Clients', 1000, '+']] as $i => [$label, $value, $suffix]) {
-            Counter::query()->updateOrCreate(['label' => $label], compact('value', 'suffix') + ['sort_order' => $i, 'is_active' => true]);
+            Counter::query()->updateOrCreate(['label' => $label], compact('value', 'suffix') + [
+                'description' => $i === 0 ? 'Business consulting consultants provide expert advice and guidance to help businesses improve their performance and efficiency.' : null,
+                'sort_order' => $i,
+                'is_active' => true,
+            ]);
         }
 
         foreach (['design' => [['Photoshop', 100], ['Figma', 95], ['Adobe XD', 60], ['Adobe Illustrator', 70]], 'development' => [['HTML', 100], ['CSS', 95], ['JavaScript', 60], ['WordPress', 70]]] as $category => $items) {

@@ -257,49 +257,34 @@
     <section class="counter-area">
         <div class="container">
             <div class="row g-5">
+                @php
+                    $featuredCounter = $counters->first();
+                @endphp
+                @if($featuredCounter)
                 <div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
                     <div class="year-of-expariance-wrapper bg-blur-style-one tmp-scroll-trigger tmp-fade-in animation-order-1">
                         <div class="year-expariance-wrap">
-                            <!-- <h2 class="year-number"><span class="counter">25 </span> </h2> -->
-                            <h2 class="counter year-number"><span class="odometer" data-count="25">00</span>
+                            <h2 class="counter year-number"><span class="odometer" data-count="{{ $featuredCounter->value }}">00</span>{{ $featuredCounter->suffix }}
                             </h2>
-                            <h3 class="year-title">Years Of <br> experience</h3>
+                            <h3 class="year-title">{!! nl2br(e($featuredCounter->label)) !!}</h3>
                         </div>
-                        <p class="year-para">Business consulting consultants provide expert advice and guida the a
-                            businesses to help theme their performance efficiency</p>
+                        @if($featuredCounter->description)
+                            <p class="year-para">{{ $featuredCounter->description }}</p>
+                        @endif
                     </div>
                 </div>
+                @endif
                 <div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
                     <div class="counter-area-right-content">
                         <div class="row g-5">
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="counter-card tmponhover tmp-scroll-trigger tmp-fade-in animation-order-1">
-                                    <h3 class="counter counter-title"><span class="odometer" data-count="20">00</span>k+
-                                    </h3>
-                                    <p class="counter-para">Our Project Complete</p>
+                            @foreach($counters->skip(1) as $counter)
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="counter-card tmponhover tmp-scroll-trigger tmp-fade-in animation-order-{{ ($loop->index % 4) + 1 }}">
+                                        <h3 class="counter counter-title"><span class="odometer" data-count="{{ $counter->value }}">00</span>{{ $counter->suffix }}</h3>
+                                        <p class="counter-para">{{ $counter->label }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="counter-card tmponhover tmp-scroll-trigger tmp-fade-in animation-order-2">
-                                    <h3 class="counter counter-title"><span class="odometer" data-count="10">00</span>k+
-                                    </h3>
-                                    <p class="counter-para">Our Natural Products</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="counter-card tmponhover tmp-scroll-trigger tmp-fade-in animation-order-3">
-                                    <h3 class="counter counter-title"><span class="odometer" data-count="200">00</span>+
-                                    </h3>
-                                    <p class="counter-para">Clients Reviews</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-12">
-                                <div class="counter-card tmponhover tmp-scroll-trigger tmp-fade-in animation-order-4">
-                                    <h3 class="counter counter-title"><span class="odometer" data-count="1000">00</span>+
-                                    </h3>
-                                    <p class="counter-para">our Satisfied Clientd</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -312,120 +297,31 @@
     <div class="tmp-skill-area tmp-section-gapTop">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="progress-wrapper">
-                        <div class="content">
-                            <h2 class="custom-title mb--30 tmp-scroll-trigger tmp-fade-in animation-order-1">
-                                Design Skill <span><img src="assets/images/custom-line/custom-line.png" alt="custom-line"></span>
-                            </h2>
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    PHOTOSHOT</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay=".3s" role="progressbar" style="width: 100%; visibility: visible; animation-duration: 0.5s; animation-delay: 0.3s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">100%</span>
+                @foreach($skillGroups as $skillGroup)
+                    <div class="col-lg-6">
+                        <div class="progress-wrapper">
+                            <div class="content">
+                                <h2 class="custom-title mb--30 tmp-scroll-trigger tmp-fade-in animation-order-1">
+                                    {{ $skillGroup->title }} <span><img src="assets/images/custom-line/custom-line.png" alt="decorative line"></span>
+                                </h2>
+                                @foreach($skillGroup->skills as $skill)
+                                    @php
+                                        $duration = number_format(0.5 + (($loop->index % 4) * 0.1), 1);
+                                        $delay = number_format(0.3 + (($loop->index % 4) * 0.1), 1);
+                                    @endphp
+                                    <div class="progress-charts">
+                                        <h6 class="heading heading-h6">{{ $skill->name }}</h6>
+                                        <div class="progress">
+                                            <div class="progress-bar wow fadeInLeft" data-wow-duration="{{ $duration }}s" data-wow-delay="{{ $delay }}s" role="progressbar" style="width: {{ $skill->percentage }}%; visibility: visible; animation-duration: {{ $duration }}s; animation-delay: {{ $delay }}s; animation-name: fadeInLeft;" aria-valuenow="{{ $skill->percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                                <span class="percent-label">{{ $skill->percentage }}%</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    FIGMA</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.6s" data-wow-delay=".4s" role="progressbar" style="width: 95%; visibility: visible; animation-duration: 0.6s; animation-delay: 0.4s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">95%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    ADOBE XD</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.7s" data-wow-delay=".5s" role="progressbar" style="width: 60%; visibility: visible; animation-duration: 0.7s; animation-delay: 0.5s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">60%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    ADOBE ILLUSTRATOR</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".6s" role="progressbar" style="width: 70%; visibility: visible; animation-duration: 0.8s; animation-delay: 0.6s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">70%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="progress-wrapper">
-                        <div class="content">
-                            <h2 class="custom-title mb--30 tmp-scroll-trigger tmp-fade-in animation-order-1">
-                                Development Skill <span><img src="assets/images/custom-line/custom-line.png" alt="custom-line"></span>
-                            </h2>
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    HTML</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay=".3s" role="progressbar" style="width: 100%; visibility: visible; animation-duration: 0.5s; animation-delay: 0.3s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">100%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    CSS</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.6s" data-wow-delay=".4s" role="progressbar" style="width: 95%; visibility: visible; animation-duration: 0.6s; animation-delay: 0.4s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">95%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    Javascript</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.7s" data-wow-delay=".5s" role="progressbar" style="width: 60%; visibility: visible; animation-duration: 0.7s; animation-delay: 0.5s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">60%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                            <!-- Start Single Progress Charts -->
-                            <div class="progress-charts">
-                                <h6 class="heading heading-h6">
-                                    Wordpress</h6>
-                                <div class="progress">
-                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".6s" role="progressbar" style="width: 70%; visibility: visible; animation-duration: 0.8s; animation-delay: 0.6s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="percent-label">70%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Progress Charts -->
-
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

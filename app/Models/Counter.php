@@ -11,7 +11,7 @@ class Counter extends Model
     /** @use HasFactory<CounterFactory> */
     use HasFactory;
 
-    protected $fillable = ['label', 'value', 'suffix', 'sort_order', 'is_active'];
+    protected $fillable = ['label', 'value', 'suffix', 'description', 'sort_order', 'is_active'];
 
     protected function casts(): array
     {

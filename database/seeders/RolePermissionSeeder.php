@@ -18,7 +18,7 @@ class RolePermissionSeeder extends Seeder
             'blog_post', 'career_entry', 'contact_message', 'counter',
             'hero_section', 'partner', 'project', 'section_setting',
             'service', 'site_setting', 'skill', 'social_link', 'testimonial',
-            'role', 'user', 'navigation_item',
+            'role', 'user', 'navigation_item', 'skill_group',
         ];
 
         $permissions = collect($resources)->flatMap(fn (string $resource): array => [
