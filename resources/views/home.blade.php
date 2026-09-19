@@ -1,12 +1,36 @@
+@php
+    $siteName = $siteSetting?->site_name ?? 'Personal Portfolio';
+    $metaTitle = $siteSetting?->meta_title ?: $siteName;
+    $metaDescription = $siteSetting?->meta_description ?: 'Personal portfolio';
+    $logoUrl = $siteSetting?->mediaUrl($siteSetting->logo, 'assets/images/logo/white-logo-reeni.png') ?? asset('assets/images/logo/white-logo-reeni.png');
+    $darkLogoUrl = $siteSetting?->mediaUrl($siteSetting->dark_logo, 'assets/images/logo/logo-white.png') ?? asset('assets/images/logo/logo-white.png');
+    $faviconUrl = $siteSetting?->mediaUrl($siteSetting->favicon, 'assets/images/favicon.svg') ?? asset('assets/images/favicon.svg');
+    $sidebarImageUrl = $siteSetting?->mediaUrl($siteSetting->sidebar_image, 'assets/images/logo/man.png') ?? asset('assets/images/logo/man.png');
+    $ogImageUrl = $siteSetting?->mediaUrl($siteSetting->og_image, 'assets/images/banner/banner-user-image-one.png') ?? asset('assets/images/banner/banner-user-image-one.png');
+    $canonicalUrl = route('home');
+@endphp
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ $siteSetting?->meta_description ?? 'Personal portfolio' }}">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg">
-    <title>{{ $siteSetting?->meta_title ?? 'Personal Portfolio' }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
+    @if($siteSetting?->meta_keywords)<meta name="keywords" content="{{ $siteSetting->meta_keywords }}">@endif
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $faviconUrl }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $metaTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:image" content="{{ $ogImageUrl }}">
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $metaTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $ogImageUrl }}">
+    <title>{{ $metaTitle }}</title>
     <!-- Bootstrap min css -->
     <link rel="stylesheet" href="assets/css/vendor/fontawesome.css">
     <link rel="stylesheet" href="assets/css/plugins/swiper.css">
@@ -27,77 +51,20 @@
                     <div class="header-content">
                         <div class="logo">
                             <a href="{{ route('home') }}">
-                                <img class="logo-dark" src="assets/images/logo/white-logo-reeni.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
-                                <img class="logo-white" src="assets/images/logo/logo-white.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
+                                <img class="logo-dark" src="{{ $logoUrl }}" alt="{{ $siteName }} logo">
+                                <img class="logo-white" src="{{ $darkLogoUrl }}" alt="{{ $siteName }} logo">
                             </a>
                         </div>
                         <nav class="tmp-mainmenu-nav d-none d-xl-block">
                             <ul class="tmp-mainmenu">
-                                <li>
-                                    <a href="#">Home
-                                    </a>
-                                    <!-- <ul class="submenu">
-            <li><a href="index.php">Home 01</a></li>
-            <li><a href="index-02.php">Home 02</a></li>
-            <li><a href="index-03.php">Home 03</a></li>
-            <li><a href="index-04.php">Home 04</a></li>
-            <li><a href="index-05.php">Home 05</a></li>
-            <li><a href="index-06.php">Home 06</a></li>
-            <li><a href="index-07.php">Home 07</a></li>
-            <li><a href="index-08.php">Home 08</a></li>
-            <li><a href="index-09.php">Home 09</a></li>
-            <li><a href="index-10.php">Home 10</a></li>
-            <li><a href="index-11.php">Home 11</a></li>
-            <li><a href="index-12.php">Home 12</a></li>
-            <li><a href="index-13.php">Home 13</a></li>
-        </ul> -->
-                                </li>
-                                <li>
-                                    <a href="about.php">About</a>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">Services
-                                        <i class="fa-regular fa-chevron-down"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="service.php">Service</a></li>
-                                        <li><a href="service-details.php">Service Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">Blog
-                                        <i class="fa-regular fa-chevron-down"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="blog.php">Blog Classic</a></li>
-                                        <li><a href="blog-col-4.php">Blog Column 3</a></li>
-                                        <li><a href="blog-details.php">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">Project
-                                        <i class="fa-regular fa-chevron-down"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="project.php">Project</a></li>
-                                        <li><a href="project-style-two.php">Project Style 2</a></li>
-                                        <li><a href="project-style-three.php">Project Style 3</a></li>
-                                        <li><a href="project-details.php">Project Details</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="contact.php">Contact</a>
-                                </li>
+                                @include('partials.navigation')
                             </ul>
 
                         </nav>
                         <div class="tmp-header-right">
                             <div class="social-share-wrapper d-none d-md-block">
                                 <div class="social-link">
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                    @include('partials.social-links')
                                 </div>
                             </div>
                             <div class="actions-area">
@@ -121,8 +88,8 @@
             <div class="inner">
                 <div class="top-area">
                     <a href="{{ route('home') }}" class="logo">
-                        <img class="logo-dark" src="assets/images/logo/white-logo-reeni.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
-                        <img class="logo-white" src="assets/images/logo/logo-white.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
+                        <img class="logo-dark" src="{{ $logoUrl }}" alt="{{ $siteName }} logo">
+                        <img class="logo-white" src="{{ $darkLogoUrl }}" alt="{{ $siteName }} logo">
                     </a>
                     <div class="close-icon-area">
                         <button class="tmp-round-action-btn close_side_menu_active">
@@ -133,19 +100,18 @@
                 <div class="content-wrapper">
                     <div class="image-area-feature">
                         <a href="{{ route('home') }}">
-                            <img src="assets/images/logo/man.png" alt="personal-logo">
+                            <img src="{{ $sidebarImageUrl }}" alt="{{ $siteName }} profile">
                         </a>
                     </div>
-                    <h5 class="title mt--30">Freelancer delivering exceptional Webflow, and Next.js solutions.</h5>
-                    <p class="disc">I am a skilled freelancer specializing in Webflow development, Figma design, and Next.js projects. I deliver creative, dynamic, and user-centric web solutions.
-                    </p>
+                    <h5 class="title mt--30">{{ $siteSetting?->sidebar_title ?? 'Freelancer delivering exceptional web solutions.' }}</h5>
+                    <p class="disc">{{ $siteSetting?->sidebar_description ?? 'I create thoughtful, user-focused digital experiences.' }}</p>
                     <div class="short-contact-area">
                         <!-- single contact information -->
                         <div class="single-contact">
                             <i class="fa-solid fa-phone"></i>
                             <div class="information tmp-link-animation">
                                 <span>Call Now</span>
-                                <a href="#" class="number">+92 (8800) - 98670</a>
+                                <a href="tel:{{ preg_replace('/[^+0-9]/', '', $siteSetting?->phone ?? '') }}" class="number">{{ $siteSetting?->phone ?? 'Not provided' }}</a>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -155,7 +121,7 @@
                             <i class="fa-solid fa-envelope"></i>
                             <div class="information tmp-link-animation">
                                 <span>Mail Us</span>
-                                <a href="#" class="number">example@info.com</a>
+                                <a href="mailto:{{ $siteSetting?->email }}" class="number">{{ $siteSetting?->email ?? 'Not provided' }}</a>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -165,7 +131,7 @@
                             <i class="fa-solid fa-location-crosshairs"></i>
                             <div class="information tmp-link-animation">
                                 <span>My Address</span>
-                                <span class="number">66 Broklyant, New York 3269</span>
+                                <span class="number">{{ $siteSetting?->address ?? 'Not provided' }}</span>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -174,10 +140,7 @@
                     <div class="social-wrapper mt--20">
                         <span class="subtitle">find with me</span>
                         <div class="social-link">
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            @include('partials.social-links')
                         </div>
                     </div>
                     <!-- social area end -->
@@ -193,8 +156,8 @@
                 <div class="header-top">
                     <div class="logo">
                         <a href="{{ route('home') }}" class="logo-area">
-                            <img class="logo-dark" src="assets/images/logo/white-logo-reeni.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
-                            <img class="logo-white" src="assets/images/logo/logo-white.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
+                            <img class="logo-dark" src="{{ $logoUrl }}" alt="{{ $siteName }} logo">
+                            <img class="logo-white" src="{{ $darkLogoUrl }}" alt="{{ $siteName }} logo">
                         </a>
 
                     </div>
@@ -205,71 +168,14 @@
                     </div>
                 </div>
                 <ul class="tmp-mainmenu">
-                    <li>
-                        <a href="#">Home
-                        </a>
-                        <!-- <ul class="submenu">
-            <li><a href="index.php">Home 01</a></li>
-            <li><a href="index-02.php">Home 02</a></li>
-            <li><a href="index-03.php">Home 03</a></li>
-            <li><a href="index-04.php">Home 04</a></li>
-            <li><a href="index-05.php">Home 05</a></li>
-            <li><a href="index-06.php">Home 06</a></li>
-            <li><a href="index-07.php">Home 07</a></li>
-            <li><a href="index-08.php">Home 08</a></li>
-            <li><a href="index-09.php">Home 09</a></li>
-            <li><a href="index-10.php">Home 10</a></li>
-            <li><a href="index-11.php">Home 11</a></li>
-            <li><a href="index-12.php">Home 12</a></li>
-            <li><a href="index-13.php">Home 13</a></li>
-        </ul> -->
-                    </li>
-                    <li>
-                        <a href="about.php">About</a>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#">Services
-                            <i class="fa-regular fa-chevron-down"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="service.php">Service</a></li>
-                            <li><a href="service-details.php">Service Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#">Blog
-                            <i class="fa-regular fa-chevron-down"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="blog.php">Blog Classic</a></li>
-                            <li><a href="blog-col-4.php">Blog Column 3</a></li>
-                            <li><a href="blog-details.php">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#">Project
-                            <i class="fa-regular fa-chevron-down"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="project.php">Project</a></li>
-                            <li><a href="project-style-two.php">Project Style 2</a></li>
-                            <li><a href="project-style-three.php">Project Style 3</a></li>
-                            <li><a href="project-details.php">Project Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.php">Contact</a>
-                    </li>
+                    @include('partials.navigation')
                 </ul>
 
 
                 <div class="social-wrapper mt--40">
                     <span class="subtitle">find with me</span>
                     <div class="social-link">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        @include('partials.social-links')
                     </div>
                 </div>
                 <!-- social area end -->
@@ -283,7 +189,7 @@
 
 
     <!-- tmp banner area start -->
-    <div class="tmp-banner-one-area">
+    <div class="tmp-banner-one-area" id="home">
         <div class="container">
             <div class="banner-one-main-wrapper">
                 <div class="row align-items-center">
@@ -329,7 +235,7 @@
 
 
     <!-- Tpm Service Area Start -->
-    <section class="service-area tmp-section-gap">
+    <section class="service-area tmp-section-gap" id="services">
         <div class="container">
             <div class="row justify-content-center">
                 @foreach($services as $service)
@@ -526,7 +432,7 @@
     <!-- tmp skill area end -->
 
     <!-- Tpm Latest Service Area Start -->
-    <section class="latest-service-area tmp-section-gapTop">
+    <section class="latest-service-area tmp-section-gapTop" id="about">
         <div class="container">
             <div class="section-head mb--50">
                 <div class="section-sub-title center-title tmp-scroll-trigger tmp-fade-in animation-order-1">
@@ -696,7 +602,7 @@
     <!-- Tpm Our Supported Company Area End -->
 
     <!-- Tpm Latest Portfolio Area Start -->
-    <div class="latest-portfolio-area custom-column-grid tmp-section-gapTop">
+    <div class="latest-portfolio-area custom-column-grid tmp-section-gapTop" id="portfolio">
         <div class="container">
             <div class="section-head mb--60">
                 <div class="section-sub-title center-title tmp-scroll-trigger tmp-fade-in animation-order-1">
@@ -939,7 +845,7 @@
     <!-- Tpm Get In touch start -->
     <section class="get-in-touch-area tmp-section-gapTop">
         <div class="container">
-            <div class="contact-get-in-touch-wrap">
+            <div class="contact-get-in-touch-wrap" id="contact">
                 <div class="get-in-touch-wrapper tmponhover">
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-5">
@@ -1023,7 +929,7 @@
 
 
     <!-- Tpm Blog and news Area Start -->
-    <section class="blog-and-news-are tmp-section-gap">
+    <section class="blog-and-news-are tmp-section-gap" id="blog">
         <div class="container">
             <div class="section-head mb--60">
                 <div class="section-sub-title center-title tmp-scroll-trigger tmp-fade-in animation-order-1">
@@ -1115,10 +1021,10 @@
                         <div class="single-footer-wrapper border-right mr--20">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="assets/images/logo/white-logo-reeni.png" alt="Reeni - Personal Portfolio HTML Template for developers and freelancers">
+                                    <img src="{{ $logoUrl }}" alt="{{ $siteName }} logo">
                                 </a>
                             </div>
-                            <p class="description"><span>Get Ready</span> To Create Great</p>
+                            <p class="description">{{ $siteSetting?->footer_text ?? 'Get Ready To Create Great' }}</p>
                             <form action="#" class="newsletter-form-1 mt--40">
                                 <input type="email" placeholder="Email Adress">
                                 <span class="form-icon"><i class="fa-regular fa-envelope"></i></span>
@@ -1129,21 +1035,9 @@
                         <div class="single-footer-wrapper quick-link-wrap">
                             <h5 class="ft-title">Quick Link</h5>
                             <ul class="ft-link tmp-link-animation">
-                                <li>
-                                    <a href="about.php">About Me</a>
-                                </li>
-                                <li>
-                                    <a href="service.php">Service</a>
-                                </li>
-                                <li>
-                                    <a href="contact.php">Contact Me</a>
-                                </li>
-                                <li>
-                                    <a href="blog.php">Blog Post</a>
-                                </li>
-                                <li>
-                                    <a href="contact.php">Pricing</a>
-                                </li>
+                                @foreach($navigationItems as $item)
+                                    <li><a href="{{ $item->url }}" target="{{ $item->target }}" @if($item->target === '_blank') rel="noopener noreferrer" @endif>{{ $item->label }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -1151,15 +1045,12 @@
                         <div class="single-footer-wrapper contact-wrap">
                             <h5 class="ft-title">Contact </h5>
                             <ul class="ft-link tmp-link-animation">
-                                <li><span class="ft-icon"><i class="fa-solid fa-envelope"></i></span><a href="#">example@gmail.com</a></li>
-                                <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span>3891 Ranchview Dr. Richardson</li>
-                                <li><span class="ft-icon"><i class="fa-solid fa-phone"></i></span><a href="#">01245789321</a></li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-envelope"></i></span><a href="mailto:{{ $siteSetting?->email }}">{{ $siteSetting?->email ?? 'Not provided' }}</a></li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span>{{ $siteSetting?->address ?? 'Not provided' }}</li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-phone"></i></span><a href="tel:{{ preg_replace('/[^+0-9]/', '', $siteSetting?->phone ?? '') }}">{{ $siteSetting?->phone ?? 'Not provided' }}</a></li>
                             </ul>
                             <div class="social-link footer">
-                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                @include('partials.social-links')
                             </div>
                         </div>
                     </div>
@@ -1180,7 +1071,7 @@
                         <ul class="tmp-link-animation">
                             <li><a href="#">Trams & Condition</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="contact.php">Contact Us</a></li>
+                            <li><a href="#contact">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>

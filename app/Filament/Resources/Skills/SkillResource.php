@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Skills;
 
+use App\Filament\Resources\Resource;
 use App\Filament\Resources\Skills\Pages\CreateSkill;
 use App\Filament\Resources\Skills\Pages\EditSkill;
 use App\Filament\Resources\Skills\Pages\ListSkills;
@@ -9,7 +10,6 @@ use App\Filament\Resources\Skills\Schemas\SkillForm;
 use App\Filament\Resources\Skills\Tables\SkillsTable;
 use App\Models\Skill;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;

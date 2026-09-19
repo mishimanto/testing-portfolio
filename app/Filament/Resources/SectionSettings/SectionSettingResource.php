@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SectionSettings;
 
+use App\Filament\Resources\Resource;
 use App\Filament\Resources\SectionSettings\Pages\CreateSectionSetting;
 use App\Filament\Resources\SectionSettings\Pages\EditSectionSetting;
 use App\Filament\Resources\SectionSettings\Pages\ListSectionSettings;
@@ -9,7 +10,6 @@ use App\Filament\Resources\SectionSettings\Schemas\SectionSettingForm;
 use App\Filament\Resources\SectionSettings\Tables\SectionSettingsTable;
 use App\Models\SectionSetting;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;

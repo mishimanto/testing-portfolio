@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SocialLinks;
 
+use App\Filament\Resources\Resource;
 use App\Filament\Resources\SocialLinks\Pages\CreateSocialLink;
 use App\Filament\Resources\SocialLinks\Pages\EditSocialLink;
 use App\Filament\Resources\SocialLinks\Pages\ListSocialLinks;
@@ -9,7 +10,6 @@ use App\Filament\Resources\SocialLinks\Schemas\SocialLinkForm;
 use App\Filament\Resources\SocialLinks\Tables\SocialLinksTable;
 use App\Models\SocialLink;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;

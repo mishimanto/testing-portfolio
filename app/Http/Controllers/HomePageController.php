@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\CareerEntry;
 use App\Models\Counter;
 use App\Models\HeroSection;
+use App\Models\NavigationItem;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\SectionSetting;
@@ -36,6 +37,12 @@ class HomePageController extends Controller
             'testimonials' => Testimonial::query()->where('is_active', true)->orderBy('sort_order')->get(),
             'blogPosts' => BlogPost::query()->where('is_published', true)->where('published_at', '<=', now())->latest('published_at')->take(3)->get(),
             'socialLinks' => SocialLink::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'navigationItems' => NavigationItem::query()
+                ->whereNull('parent_id')
+                ->where('is_active', true)
+                ->with(['children' => fn ($query) => $query->where('is_active', true)->orderBy('sort_order')])
+                ->orderBy('sort_order')
+                ->get(),
         ]);
     }
 }

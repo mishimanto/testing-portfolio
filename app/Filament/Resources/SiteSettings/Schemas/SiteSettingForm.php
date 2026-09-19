@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SiteSettings\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -18,9 +19,14 @@ class SiteSettingForm
                 TextInput::make('meta_title'),
                 Textarea::make('meta_description')
                     ->columnSpanFull(),
-                TextInput::make('logo'),
-                TextInput::make('dark_logo'),
-                TextInput::make('favicon'),
+                Textarea::make('meta_keywords')
+                    ->helperText('Comma-separated keywords, for example: Laravel developer, web designer')
+                    ->columnSpanFull(),
+                FileUpload::make('logo')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
+                FileUpload::make('dark_logo')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
+                FileUpload::make('favicon')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
+                FileUpload::make('og_image')->label('Social sharing image (Open Graph)')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
+                FileUpload::make('sidebar_image')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
                 TextInput::make('email')
                     ->label('Email address')
                     ->email(),

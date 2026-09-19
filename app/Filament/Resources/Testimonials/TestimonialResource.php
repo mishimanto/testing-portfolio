@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Testimonials;
 
+use App\Filament\Resources\Resource;
 use App\Filament\Resources\Testimonials\Pages\CreateTestimonial;
 use App\Filament\Resources\Testimonials\Pages\EditTestimonial;
 use App\Filament\Resources\Testimonials\Pages\ListTestimonials;
@@ -9,7 +10,6 @@ use App\Filament\Resources\Testimonials\Schemas\TestimonialForm;
 use App\Filament\Resources\Testimonials\Tables\TestimonialsTable;
 use App\Models\Testimonial;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;

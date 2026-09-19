@@ -24,14 +24,21 @@ class DatabaseSeeder extends Seeder
     {
         User::query()->updateOrCreate(['email' => 'admin@portfolio.test'], ['name' => 'Portfolio Admin', 'password' => Hash::make('Admin@12345'), 'is_admin' => true]);
 
+        $this->call(RolePermissionSeeder::class);
+
         SiteSetting::query()->updateOrCreate(['id' => 1], [
             'site_name' => 'Reeni Portfolio', 'meta_title' => 'Personal Portfolio',
             'meta_description' => 'A modern personal portfolio for a designer and developer.',
+            'meta_keywords' => 'portfolio, web designer, web developer, UI UX designer',
             'logo' => 'assets/images/logo/white-logo-reeni.png', 'dark_logo' => 'assets/images/logo/logo-white.png',
+            'favicon' => 'assets/images/favicon.svg', 'og_image' => 'assets/images/banner/banner-user-image-one.png',
+            'sidebar_image' => 'assets/images/logo/man.png',
             'email' => 'hello@example.com', 'phone' => '+880 1700-000000', 'address' => 'Dhaka, Bangladesh',
             'sidebar_title' => 'About Me', 'sidebar_description' => 'I create thoughtful, user-focused digital experiences.',
             'footer_text' => 'All rights reserved.',
         ]);
+
+        $this->call(NavigationItemSeeder::class);
 
         HeroSection::query()->updateOrCreate(['id' => 1], [
             'eyebrow' => 'Hello', 'name' => 'Jane Cooper',

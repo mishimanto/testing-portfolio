@@ -137,21 +137,324 @@
 }
 
 .fi-simple-layout {
-    background:
-        radial-gradient(circle at 15% 15%, rgb(6 182 212 / 16%), transparent 24rem),
-        radial-gradient(circle at 85% 85%, rgb(79 70 229 / 18%), transparent 28rem),
-        var(--admin-navy-950);
+    position: relative;
+    overflow: hidden;
+    background-color: #f1ebff;
+    background-image:
+        radial-gradient(circle at 6% 25%, rgb(124 58 237 / 7%) 0 125px, transparent 126px),
+        radial-gradient(circle at 94% 82%, rgb(124 58 237 / 9%) 0 170px, transparent 171px),
+        linear-gradient(135deg, #f7f3ff 0%, #eee5ff 52%, #e8dcff 100%);
+}
+
+.fi-simple-layout::before,
+.fi-simple-layout::after {
+    position: absolute;
+    width: 8rem;
+    height: 9rem;
+    background-image: radial-gradient(circle, rgb(124 58 237 / 30%) 0 3px, transparent 3.5px);
+    background-size: 28px 28px;
+    content: '';
+}
+
+.fi-simple-layout::before {
+    top: 31%;
+    left: 5%;
+}
+
+.fi-simple-layout::after {
+    right: 6%;
+    bottom: 17%;
 }
 
 .fi-simple-main {
-    border: 1px solid rgb(148 163 184 / 18%);
-    border-radius: 1.5rem;
-    box-shadow: 0 30px 80px rgb(0 0 0 / 38%);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: min(26.25rem, calc(100% - 2rem));
+    max-width: 26.25rem !important;
+    min-height: 0;
+    border: 0;
+    border-radius: 1rem;
+    background: #fff;
+    padding: 10.5rem 1.875rem 2.5rem;
+    box-shadow: 0 10px 30px rgb(76 29 149 / 12%);
+}
+
+.fi-simple-main::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 auto;
+    height: 10rem;
+    /* Layered wave artwork matching the visual reference, scaled with the card. */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 670 180' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='purple' x1='0' y1='0' x2='1' y2='.6'%3E%3Cstop stop-color='%237b42ef'/%3E%3Cstop offset='.55' stop-color='%236738e5'/%3E%3Cstop offset='1' stop-color='%239864ed'/%3E%3C/linearGradient%3E%3ClinearGradient id='lavender'%3E%3Cstop stop-color='%23c9b0f6'/%3E%3Cstop offset='1' stop-color='%23e4d8fa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23purple)' d='M0 0H670V170H0Z'/%3E%3Cpath fill='%23b58af2' fill-opacity='.5' d='M290 67C355 34 390-19 463 7C535 30 590 97 670 65V170H0V166C45 71 168 122 290 67Z'/%3E%3Cpath fill='url(%23lavender)' d='M0 168C53 37 136 71 207 64C295 59 343 2 421 17C510 29 573 107 670 65V180H0Z'/%3E%3Cpath fill='white' d='M0 170C48 43 139 140 225 108C302 79 324 18 402 29C509 32 556 147 670 125V180H0Z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.fi-simple-header::before {
+    display: grid;
+    width: 4.375rem;
+    height: 4.375rem;
+    margin: -2.2rem auto 1.25rem;
+    place-items: center;
+    border-radius: 999px;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='%236732df'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M16.5 10.5V6.75a4.5 4.5 0 0 0-9 0v3.75m-.75 0h10.5A2.25 2.25 0 0 1 19.5 12.75v6A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75v-6a2.25 2.25 0 0 1 2.25-2.25Z'/%3E%3C/svg%3E") center / 1.8rem no-repeat,
+        linear-gradient(145deg, #eee7ff, #dccbff);
+    content: '';
+    box-shadow: 0 10px 30px rgb(103 50 223 / 14%);
 }
 
 .fi-simple-header-heading {
+    color: #20164c;
+    font-size: 1.5rem;
     font-weight: 750;
     letter-spacing: -0.03em;
+}
+
+.fi-simple-header-subheading {
+    margin-top: 0.45rem;
+    color: #69637a;
+    font-size: 1rem;
+}
+
+.fi-simple-main .fi-fo-field-wrp-label {
+    color: #2c2547;
+    font-size: 0.95rem;
+    font-weight: 650;
+}
+
+.fi-simple-main .fi-input-wrp {
+    min-height: 3.125rem;
+    border: 1px solid #ded9e8;
+    border-radius: 0.625rem;
+    background: #fff;
+    box-shadow: none;
+}
+
+.fi-simple-main .fi-input-wrp:focus-within {
+    border-color: #7840e9;
+    box-shadow: 0 0 0 3px rgb(120 64 233 / 12%);
+}
+
+.fi-simple-main .fi-input-wrp .fi-input {
+    color: #29233e;
+    font-size: 0.95rem;
+}
+
+.fi-simple-main .fi-input-wrp .fi-icon {
+    color: #777184;
+}
+
+.fi-simple-main .fi-checkbox-input:checked {
+    background-color: #743ce4;
+}
+
+.fi-simple-main .fi-link {
+    color: #7038df;
+    font-weight: 600;
+}
+
+.fi-simple-main .fi-btn.fi-color-primary {
+    min-height: 3.125rem;
+    border-radius: 0.625rem;
+    background: linear-gradient(100deg, #813ff0 0%, #5f2cda 100%);
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: 0 12px 25px rgb(103 50 223 / 24%);
+}
+
+.fi-simple-main .fi-btn.fi-color-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgb(103 50 223 / 32%);
+}
+
+.portfolio-login {
+    color: #1b1c34;
+}
+
+.portfolio-login-header {
+    text-align: center;
+}
+
+.portfolio-login-lock {
+    display: grid;
+    width: 4.375rem;
+    height: 4.375rem;
+    margin: -2.2rem auto 1.25rem;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #eee7ff, #dccbff);
+    color: #6732df;
+    box-shadow: 0 10px 30px rgb(103 50 223 / 14%);
+}
+
+.portfolio-login-lock svg {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.portfolio-login-header h1 {
+    margin: 0 0 1.6rem;
+    color: #1b1c34;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.portfolio-login-header p {
+    margin: 0 0 1.6rem;
+    color: #6b6f76;
+    font-size: 0.875rem;
+}
+
+.portfolio-input-group {
+    margin-bottom: 1.125rem;
+    text-align: left;
+}
+
+.portfolio-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.portfolio-input-box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 3.125rem;
+    overflow: hidden;
+    border: 1px solid #e4e6ef;
+    border-radius: 5px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-input-box:focus-within {
+    border-color: #6c63ff;
+    box-shadow: 0 0 0 3px rgb(108 99 255 / 15%);
+}
+
+.portfolio-input-box > svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-left: 0.875rem;
+    flex: 0 0 auto;
+    color: #9aa0a6;
+}
+
+.portfolio-input-box input {
+    width: 100%;
+    height: 100%;
+    padding: 0 2.8rem 0 0.875rem;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #333;
+    font-size: 0.875rem;
+}
+
+.portfolio-password-toggle {
+    display: grid;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.8rem;
+    height: 100%;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    color: #9aa0a6;
+    cursor: pointer;
+}
+
+.portfolio-password-toggle svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.portfolio-form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.25rem 0 1.25rem;
+    font-size: 0.875rem;
+}
+
+.portfolio-remember {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.portfolio-remember input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #6c63ff;
+}
+
+.portfolio-form-options a {
+    color: #6c63ff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.portfolio-form-options a:hover {
+    text-decoration: underline;
+}
+
+.portfolio-login-button {
+    width: 100%;
+    height: 3.125rem;
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #6c63ff, #574bff);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgb(108 99 255 / 25%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgb(108 99 255 / 32%);
+}
+
+.portfolio-login-button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.portfolio-field-error {
+    margin-top: 0.35rem;
+    color: #dc2626;
+    font-size: 0.78rem;
+}
+
+@media (max-width: 640px) {
+    .fi-simple-main {
+        width: calc(100% - 2rem);
+        min-height: auto;
+        margin-inline: 1rem;
+        border-radius: 1rem;
+        padding: 9.5rem 1.25rem 2rem;
+    }
+
+    .fi-simple-main::before {
+        height: 9rem;
+    }
+
+    .fi-simple-header-heading {
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 1023px) {
