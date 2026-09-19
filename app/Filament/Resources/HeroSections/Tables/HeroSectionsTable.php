@@ -20,7 +20,13 @@ class HeroSectionsTable
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->label('Preview')
+                    ->disk('site_assets')
+                    ->visibility('public')
+                    ->square()
+                    ->imageSize(64)
+                    ->defaultImageUrl(asset('assets/images/banner/banner-user-image-one.png')),
                 TextColumn::make('primary_button_label')
                     ->searchable(),
                 TextColumn::make('primary_button_url')

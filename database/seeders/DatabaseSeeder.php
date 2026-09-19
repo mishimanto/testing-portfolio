@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NavigationItemSeeder::class);
 
         HeroSection::query()->updateOrCreate(['id' => 1], [
-            'eyebrow' => 'Hello', 'name' => 'Jane Cooper',
+            'eyebrow' => 'Hello', 'heading_prefix' => "I'm", 'name' => 'Jane Cooper', 'heading_connector' => 'a',
             'roles' => ['Web Designer.', 'Web Developer.', 'UI/UX Designer.', 'Freelancer.'],
             'description' => 'A personal portfolio is a collection of work, achievements, and skills that highlights professional growth.',
             'image' => 'assets/images/banner/banner-user-image-one.png',

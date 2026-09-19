@@ -195,7 +195,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 order-lg-2">
                         <div class="banner-right-content">
-                            <img class="tmp-scroll-trigger tmp-zoom-in animation-order-1" src="{{ asset($hero?->image ?? 'assets/images/banner/banner-user-image-one.png') }}" alt="{{ $hero?->name ?? 'Portfolio owner' }}">
+                            <img class="tmp-scroll-trigger tmp-zoom-in animation-order-1" src="{{ $hero?->imageUrl() ?? asset('assets/images/banner/banner-user-image-one.png') }}" alt="{{ $hero?->name ?? 'Portfolio owner' }}">
                             <h2 class="banner-big-text-1 up-down">{{ strtoupper($hero?->roles[0] ?? 'WEB DESIGNER') }}</h2>
                             <h2 class="banner-big-text-2 up-down-2">{{ strtoupper($hero?->roles[0] ?? 'WEB DESIGNER') }}</h2>
                         </div>
@@ -203,8 +203,8 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="inner">
                             <span class="sub-title tmp-scroll-trigger tmp-fade-in animation-order-1">{{ $hero?->eyebrow ?? 'Hello' }}</span>
-                            <h1 class="title tmp-scroll-trigger tmp-fade-in animation-order-2 mt--5">i’m
-                                {{ $hero?->name ?? 'Jane Cooper' }} a <br>
+                            <h1 class="title tmp-scroll-trigger tmp-fade-in animation-order-2 mt--5">{{ $hero?->heading_prefix ?? "I'm" }}
+                                {{ $hero?->name ?? 'Jane Cooper' }} {{ $hero?->heading_connector ?? 'a' }} <br>
                                 <span class="header-caption">
                                     <span class="cd-headline clip is-full-width">
                                         <span class="cd-words-wrapper">
