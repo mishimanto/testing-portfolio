@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\SiteSettings\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -19,8 +20,13 @@ class SiteSettingForm
                 TextInput::make('meta_title'),
                 Textarea::make('meta_description')
                     ->columnSpanFull(),
-                Textarea::make('meta_keywords')
-                    ->helperText('Comma-separated keywords, for example: Laravel developer, web designer')
+                TagsInput::make('meta_keywords')
+                    ->label('Meta keywords')
+                    ->separator(',')
+                    ->splitKeys(['Tab', ','])
+                    ->reorderable()
+                    ->placeholder('Add a keyword')
+                    ->helperText('Type a keyword and press Enter, comma, or Tab. Drag tags to reorder them.')
                     ->columnSpanFull(),
                 FileUpload::make('logo')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
                 FileUpload::make('dark_logo')->image()->disk('site_assets')->directory('assets/images/site')->visibility('public'),
